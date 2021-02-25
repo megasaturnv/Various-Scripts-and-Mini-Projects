@@ -1,3 +1,5 @@
+// MegaSaturnv 2017-02-23
+
 /*The circuit:
  * LCD RS pin to digital pin 12
  * LCD Enable pin to digital pin 11
