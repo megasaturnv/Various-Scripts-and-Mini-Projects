@@ -45,16 +45,13 @@ module dovetailJoint(a=6, b=12, h=5, thickness=2, center=true) {
 }
 
 module roundedCorner(sideLength=8, thickness=2, cylinderCenter=false) {
-	if (cylinderCenter) { //Cylinder cutout is in the centre
 		difference() {
 			cube([sideLength, sideLength, thickness]);
-			cylinder(r=sideLength, h=thickness);
-		}
-	} else {
-		difference() { //Corner of the object is in the centre
-			cube([sideLength, sideLength, thickness]);
-			translate([sideLength, sideLength, -0.01]) cylinder(r=sideLength, h=thickness+0.02);
-		}
+			if (cylinderCenter) { //Cylinder cutout is in the centre
+				translate([0, 0, -0.01]) cylinder(r=sideLength, h=thickness+0.02);
+			} else { //Corner of the object is in the centre
+				translate([sideLength, sideLength, -0.01]) cylinder(r=sideLength, h=thickness+0.02);
+			}
 	}
 }
 
