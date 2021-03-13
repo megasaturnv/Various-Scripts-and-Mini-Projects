@@ -12,7 +12,7 @@ $fn = $preview ? 24 : 96;
 /////////////
 // Modules //
 /////////////
-module circuitBoardMountingPosts(width=50, length=30, screwHoleHeight=5, screwHoleOuterDiameter=6, screwHoleInnerDiameter=3, screwHoleInnerDepth=3, center=true, justHole=false) {
+module screwMountingPosts(width=50, length=30, screwHoleHeight=5, screwHoleOuterDiameter=6, screwHoleInnerDiameter=3, screwHoleInnerDepth=3, center=true, justHole=false) {
 	if (center) {
 		for (i=[-1,1], j=[-1,1]) {
 			translate([i*(width/2), j*(length/2), 0]) difference() {
@@ -87,13 +87,13 @@ translate([0, 0, 0])  color("lightgreen") drawAvatar();
 translate([0, 10, 0]) dovetailJoint();
 translate([0, 20, 0]) roundedCorner();
 translate([0, 30, 0]) triangle();
-translate([0, 60, 0]) circuitBoardMountingPosts();
+translate([0, 60, 0]) screwMountingPosts();
 
 translate([10, 0, 0]) difference() {
 	union() {
 		cube([30,30,2]);
 		translate([15, -3, 0]) dovetailJoint(4, 8, 3, 2, true);
-		translate([15, 15, 2]) circuitBoardMountingPosts(15, 15, 3, 6, 3);
+		translate([15, 15, 2]) screwMountingPosts(15, 15, 3, 6, 3);
 	}
 
 	translate([15, 27, -0.01]) dovetailJoint(4, 8, 3, 2.02, true);
