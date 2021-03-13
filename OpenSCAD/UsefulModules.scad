@@ -12,11 +12,20 @@ $fn = $preview ? 24 : 96;
 /////////////
 // Modules //
 /////////////
-module circuitBoardMountingPosts(width=100, length=50, screwHoleHeight=5, screwHoleOuterDiameter=6, screwHoleInnerDiameter=3) {
-	for (i=[-1,1], j=[-1,1]) {
-		translate([i*(width/2), j*(length/2), 0]) difference() {
-			cylinder(d=screwHoleOuterDiameter, h=screwHoleHeight);
-			cylinder(d=screwHoleInnerDiameter, h=screwHoleHeight+0.01);
+module circuitBoardMountingPosts(width=50, length=30, screwHoleHeight=5, screwHoleOuterDiameter=6, screwHoleInnerDiameter=3, screwHoleInnerDepth=3, center=true, justHole=false) {
+	if (center) {
+		for (i=[-1,1], j=[-1,1]) {
+			translate([i*(width/2), j*(length/2), 0]) difference() {
+				if (!justHole) cylinder(d=screwHoleOuterDiameter, h=screwHoleHeight);
+				translate([0,0,screwHoleHeight-screwHoleInnerDepth]) cylinder(d=screwHoleInnerDiameter, h=screwHoleInnerDepth+0.01);
+			}
+		}
+	} else {
+		for (i=[0,2], j=[0,2]) {
+			translate([i*(width/2), j*(length/2), 0]) difference() {
+				if (!justHole) cylinder(d=screwHoleOuterDiameter, h=screwHoleHeight);
+				translate([0,0,screwHoleHeight-screwHoleInnerDepth]) cylinder(d=screwHoleInnerDiameter, h=screwHoleInnerDepth+0.01);
+			}
 		}
 	}
 }
