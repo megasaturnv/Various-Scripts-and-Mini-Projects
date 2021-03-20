@@ -30,14 +30,53 @@ module screwMountingPosts(width=50, length=30, screwHoleHeight=5, screwHoleOuter
 	}
 }
 
-module dovetailJoint(a=6, b=12, h=5, thickness=2, center=true) {
+module dovetailJoint(a=7.5, b=15, h=5, thickness=2, center=true, centeredAround="b", tolerance=0.3, gender="male") {
+	at = a - tolerance;
+	bt = b - tolerance;
+	ht = h + tolerance;
+
 	if (center)	{
-		translate([-b/2, 0, 0])
-		linear_extrude (height=thickness)
-		polygon(points=[[0,0],[b,0],[a/2+b/2,h],[b/2-a/2,h]]);
+		if (centeredAround=="a") {
+			if (gender == "male") {
+				translate([-bt/2, -h, 0])
+				linear_extrude(height=thickness)
+				polygon(points=[[0,0],[bt,0],[at/2+bt/2,h],[bt/2-at/2,h]]);
+			} else if (gender == "female") {
+				translate([-b/2, -ht + 0.0001, 0])
+				linear_extrude(height=thickness)
+				polygon(points=[[0,0],[b,0],[a/2+b/2,ht],[b/2-a/2,ht]]);
+			}
+		} else if (centeredAround=="b") {
+			if (gender == "male") {
+				translate([-bt/2, 0, 0])
+				linear_extrude(height=thickness)
+				polygon(points=[[0,0],[bt,0],[at/2+bt/2,h],[bt/2-at/2,h]]);
+			} else if (gender == "female") {
+				translate([-b/2, 0, 0])
+				linear_extrude(height=thickness)
+				polygon(points=[[0,0],[b,0],[a/2+b/2,ht],[b/2-a/2,ht]]);
+			}
+		}
 	} else {
-		linear_extrude (height=thickness)
-		polygon(points=[[0,0],[b,0],[a/2+b/2,h],[b/2-a/2,h]]);
+		if (centeredAround=="a") {
+			if (gender == "male") {
+				translate([0, -h, 0])
+				linear_extrude(height=thickness)
+				polygon(points=[[0,0],[bt,0],[at/2+bt/2,h],[bt/2-at/2,h]]);
+			} else if (gender == "female") {
+				translate([0, -ht, 0])
+				linear_extrude(height=thickness)
+				polygon(points=[[0,0],[b,0],[a/2+b/2,ht],[b/2-a/2,ht]]);
+			}
+		} else if (centeredAround=="b") {
+			if (gender == "male") {
+				linear_extrude(height=thickness)
+				polygon(points=[[0,0],[bt,0],[at/2+bt/2,h],[bt/2-at/2,h]]);
+			} else if (gender == "female") {
+				linear_extrude(height=thickness)
+				polygon(points=[[0,0],[b,0],[a/2+b/2,ht],[b/2-a/2,ht]]);
+			}
+		}
 	}
 }
 
