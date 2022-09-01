@@ -1,5 +1,5 @@
 //MegaSaturnv 2017-07-05
-//Arduino simple digitalRead with software debounce 
+//Arduino simple digitalRead with software debounce
 
 //Digital read an pin with software debounce. Pin should be set as: pinMode(pin, INPUT_PULLUP) in setup().
 //Arduino ATMEGA328P (and some other ATMEL chips) have internal pull-up resistors. Pin is active when connected to GND
