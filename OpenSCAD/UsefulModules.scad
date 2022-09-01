@@ -127,15 +127,15 @@ translate([0, 10, 0]) dovetailJoint();
 translate([0, 20, 0]) roundedCorner();
 translate([0, 30, 0]) triangle();
 translate([0, 60, 0]) screwMountingPosts();
-
+//dovetailJoint(a=7.5, b=15, h=5, thickness=2, center=true, centeredAround="b", tolerance=0.3, gender="male")
 translate([10, 0, 0]) difference() {
 	union() {
 		cube([30,30,2]);
-		translate([15, -3, 0]) dovetailJoint(4, 8, 3, 2, true);
+		translate([15, -3, 0]) dovetailJoint(4, 8, 3, 2, true, gender="male");
 		translate([15, 15, 2]) screwMountingPosts(15, 15, 3, 6, 3);
 	}
 
-	translate([15, 27, -0.01]) dovetailJoint(4, 8, 3, 2.02, true);
+	translate([15, 27, -0.01]) dovetailJoint(4, 8, 3, 2.02, true, gender="female");
 
 	translate([0,  0,  -0.01]) rotate([0, 0, 0])   roundedCorner(4, 2.02, false);
 	translate([30, 0,  -0.01]) rotate([0, 0, 90])  roundedCorner(4, 2.02, false);
