@@ -1,4 +1,4 @@
-Various useful scripts for interacting with a GoPro via the unofficial api:
+Various useful scripts for interacting with a GoPro. Currently only testing via the unofficial api:
 https://github.com/KonradIT/gopro-py-api
 
 `pip install goprocam`
