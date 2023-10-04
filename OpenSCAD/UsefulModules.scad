@@ -112,6 +112,18 @@ module roundedCorner(sideLength=8, thickness=2, cylinderCenter=false) {
 	}
 }
 
+module roundedCornerStarShape(sideLength=1, thickness=1) { //untested
+    translate([-sideLength, -sideLength, -0.01]) difference() {
+        cube([2*sideLength, 2*sideLength, thickness]);
+        union() {
+            translate([0, 0, -0.2]) cylinder(r=sideLength, h=thickness+0.04);
+            translate([2*sideLength, 0, -0.02]) cylinder(r=sideLength, h=thickness+0.04);
+            translate([0, 2*sideLength, -0.2]) cylinder(r=sideLength, h=thickness+0.04);
+            translate([2*sideLength, 2*sideLength, -0.02]) cylinder(r=sideLength, h=thickness+0.04);
+        }
+    }
+}
+
 module triangle(XLength=5, YLength=8, thickness=2) {
     linear_extrude(height=thickness)
     {
